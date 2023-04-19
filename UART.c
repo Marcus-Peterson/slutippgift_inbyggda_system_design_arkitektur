@@ -1,5 +1,4 @@
-#include "stm32f4xx.h" //Inkluderar källkoden från STM för deras plattfrom f4xx
-#include <stdio.h> //Inkluderar standard I/O
+#include "UART.h" //Hämtar vår samlingsfil för headers och funktioner
 
 void USART2_Init(void) { //Deklarerar en funktion för att initiera USART-protkokollet och dess beståndsdelar
 
