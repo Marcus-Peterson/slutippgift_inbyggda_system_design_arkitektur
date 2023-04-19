@@ -31,5 +31,53 @@ USART2->CR3 = 0x000; //Nollställer CR3
 USART2->CR1 |= 0x2000; //Omställer bit 13 (UART-Aktiveringen) till 1
 
 }
+// UART Write
+int USART2_write(int ch){ //Deklarerar skrivfunktionen (Överföringen av data till terminalen)
+  
+  while(!(USART2->SR & 0x0080)){} //Sätter vi ett krav som kontrollerar att statusen på överföringen är tom och kan ta emot nästa karaktär (byte)
+  USART2->DR = (ch & 0xFF); //Sätter överföringen av byten till dataregistret
+  
+  return ch;
+
+}
+// UART Read
+int USART2_read(void){ //Deklarerar läsfunktionen (mottagning av information)
+  
+  while(!(USART2->SR & 0x0020)){} //Sätter vi ett krav som kontrollerar om det finns mer data att hämta
+  return USART2->DR; //Läser ut datan
+}
+
+// Interface för standard I/O i C
+//En omdiregering till att utge datan i terminalen
+struct __FILE{int handle; }; //Strukturerar våra huvudsakliga överföringsströmmar
+FILE __stdin = {0};
+FILE __stdout = {1};
+FILE __stderr = {2};
+
+int fget(FILE *f){ //fget hämtar en byte från standard strömmen och behandlar även teckenreturer
+  int c;
+  
+  c = USART2_read();
+  
+  if (c == '\r'){
+    USART2_write(c);
+    c = '\n';
+  }
+  
+  USART2_write(c);
+  
+  return c;
+}
+
+int fputc(int c, File *f){ //fput skriver en byte till standardströmmen
+  return USART2_write(c);
+}
+
+int n; //deklarerar vi en byte för användning i testfunktionen
+char str[80]; //Sätter vi en limitering i överföringen av karaktärer
 
 // Testfunktion för att testa UART
+void test_setup(void){
+printf("Test"); //Testar vår skrivfunktion
+}
+
