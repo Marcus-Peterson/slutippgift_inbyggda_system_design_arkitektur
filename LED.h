@@ -38,14 +38,18 @@ typedef enum {
 }LedState_Type;
 
 // Definerar de attribut som LED består utav
-typedef struct{
-  LedColor_Type color;
-  LedState_Type state;
-}Led_Type;
+class Led{
 
-//Definerar funktionsprototyperna för led-konstruktorn samt statuskontrollen
-void Led_ctor(Led_Type * const me, LedColor_Type _color, LedState_Type _state);
-void Led_setState(Led_Type * const me, LedState_Type _state);
-LedState_Type Led_getState(Led_Type * const me);
+  private:
+      LedColor_Type color;
+      LedState_Type state;
+  
+  public:
+  
+      Led(LedColor_Type _color,LedState_Type _state);
+      void setState(LedState_Type _state);
+      LedState_Type getState() const;
+
+};
 
 #endif
