@@ -46,38 +46,3 @@ int USART2_read(void){ //Deklarerar läsfunktionen (mottagning av information)
   while(!(USART2->SR & 0x0020)){} //Sätter vi ett krav som kontrollerar om det finns mer data att hämta
   return USART2->DR; //Läser ut datan
 }
-
-// Interface för standard I/O i C
-//En omdiregering till att utge datan i terminalen
-struct __FILE{int handle; }; //Strukturerar våra huvudsakliga överföringsströmmar
-FILE __stdin = {0};
-FILE __stdout = {1};
-FILE __stderr = {2};
-
-int fget(FILE *f){ //fget hämtar en byte från standard strömmen och behandlar även teckenreturer
-  int c;
-  
-  c = USART2_read();
-  
-  if (c == '\r'){
-    USART2_write(c);
-    c = '\n';
-  }
-  
-  USART2_write(c);
-  
-  return c;
-}
-
-int fputc(int c, File *f){ //fput skriver en byte till standardströmmen
-  return USART2_write(c);
-}
-
-int n; //deklarerar vi en byte för användning i testfunktionen
-char str[80]; //Sätter vi en limitering i överföringen av karaktärer
-
-// Testfunktion för att testa UART
-void test_setup(void){
-printf("Test"); //Testar vår skrivfunktion
-}
-
