@@ -44,7 +44,7 @@ int main()
     }
   }
 
-  // Frigör minnet allokerat till led3
+  // Frigör minnet allokerat till led3 innan vi raderar den
   free(led3)
   delete led3;
   return 0;

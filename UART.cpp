@@ -9,7 +9,7 @@ void USART2_Init(void)
 
   // 2. Enablea klocktillgång för portA
 
-  RCC->AHB1ENR |= 0x01; // Atkiverar GPIOA genom att sätta bit 0 i AHB1ENR till 1.
+  RCC->AHB1ENR |= 0x01; // Aktiverar GPIOA genom att sätta bit 0 i AHB1ENR till 1.
 
   // 3. Enablea pins relaterade till vald port, för alternativ funktion
   GPIOA->MODER &= ~0x00F0; // Rensar bitarna 4-7 för att förbereda pins PA2 och PA3

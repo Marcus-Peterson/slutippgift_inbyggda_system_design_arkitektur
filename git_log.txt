@@ -1,0 +1,18 @@
+commit 878b766d14e5ce1f970f5bcaa5e3b4501d82d917
+Author: Marcus-Peterson <73422974+Marcus-Peterson@users.noreply.github.com>
+Date:   Sun May 14 20:40:03 2023 +0200
+
+    Lade till frigöring av minne på rad 48, för extra säkerhet, så vi verkligen ser till att frigöra minnet innan vi raderar något
+
+commit 589e11339fd9daee603b80b2544656310cb61b5e
+Author: Marcus-Peterson <73422974+Marcus-Peterson@users.noreply.github.com>
+Date:   Sun May 14 20:37:02 2023 +0200
+
+    Ladet till felhantering i while loop på rad 37 t.o.m rad 43 utifall någon lampa inte skulle fungera
+
+commit 7d8520897f68884f516bb0a74c8d3852df4396f8
+Author: Marcus-Peterson <73422974+Marcus-Peterson@users.noreply.github.com>
+Date:   Sun May 14 20:35:47 2023 +0200
+
+    First commit
+
